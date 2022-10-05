@@ -342,6 +342,7 @@ func TestServerSegmentationGetObjects(t *testing.T) {
 		box, err := spatialmath.NewGeometryFromProto(object.Geometries.Geometries[0])
 		test.That(t, err, test.ShouldBeNil)
 		test.That(t, box.AlmostEqual(expectedBoxes[0]) || box.AlmostEqual(expectedBoxes[1]), test.ShouldBeTrue)
+		test.That(t, box.Label(), test.ShouldEqual, "box_label")
 	}
 }
 

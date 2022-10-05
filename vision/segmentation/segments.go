@@ -78,6 +78,7 @@ func (c *Segments) AssignCluster(point r3.Vector, data pc.Data, index int) error
 		return nil
 	}
 	c.Objects[index].Geometry, err = pc.BoundingBoxFromPointCloud(c.Objects[index])
+	// c.Objects[index].Geometry, err = pc.BoundingBoxFromPointCloudWithLabel(c.Objects[index], c.Objects[index].Geometry.Label())
 	if err != nil {
 		return err
 	}

@@ -62,7 +62,9 @@ func NewClientFromConn(
 func (c *client) Read(ctx context.Context) (image.Image, func(), error) {
 	ctx, span := trace.StartSpan(ctx, "camera::client::Read")
 	defer span.End()
-	mimeType := gostream.MIMETypeHint(ctx, "")
+	// mimeType := gostream.MIMETypeHint(ctx, "")
+	// TODO: get this from the context
+	mimeType := "video/h264"
 	expectedType, _ := utils.CheckLazyMIMEType(mimeType)
 	resp, err := c.client.GetImage(ctx, &pb.GetImageRequest{
 		Name:     c.name,

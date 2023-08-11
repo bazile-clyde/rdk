@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"context"
 	"encoding/binary"
+	gimage "github.com/viamrobotics/gostream/image"
 	"image"
 	"image/color"
 	"image/draw"
@@ -338,6 +339,9 @@ func EncodeImage(ctx context.Context, img image.Image, mimeType string) ([]byte,
 		if err := qoi.Encode(&buf, img); err != nil {
 			return nil, err
 		}
+	case ut.MimeTypeH264:
+		h264Img := img.(gimage.H264)
+		buf.Write(h264Img.Bytes)
 	default:
 		return nil, errors.Errorf("do not know how to encode %q", actualOutMIME)
 	}

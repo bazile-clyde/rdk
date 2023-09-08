@@ -173,6 +173,7 @@ require (
 	github.com/fzipp/gocyclo v0.6.0 // indirect
 	github.com/gen2brain/malgo v0.11.10 // indirect
 	github.com/gin-gonic/gin v1.8.1 // indirect
+	github.com/giorgisio/goav v0.1.0 // indirect
 	github.com/go-audio/riff v1.0.0 // indirect
 	github.com/go-chi/chi/v5 v5.0.7 // indirect
 	github.com/go-critic/go-critic v0.6.7 // indirect
@@ -396,3 +397,5 @@ require (
 )
 
 replace github.com/viamrobotics/gostream => /usr/local/libs/gostream
+
+replace github.com/giorgisio/goav => /usr/local/libs/goav

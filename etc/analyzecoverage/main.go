@@ -38,7 +38,7 @@ func main() {
 	utils.ContextualMain(mainWithArgs, logger)
 }
 
-func mainWithArgs(ctx context.Context, args []string, logger golog.Logger) error {
+func mainWithArgs(ctx context.Context, _ []string, logger golog.Logger) error {
 	profileDataAll, err := io.ReadAll(os.Stdin)
 	if err != nil {
 		return err

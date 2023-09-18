@@ -22,7 +22,11 @@ setup:
 build: build-web build-go
 
 build-go:
-	go build ./...
+	# Ignore gostream and its dependencies.
+	# Omit test-only packages; that is, packages that have no source files.
+	# 	This is done by default if `go build` is with a wildcard, for example, `go build ./...`. Here, we replicate that
+	# 	behavior. See https://github.com/golang/go/blob/fa4f951026f697bc042422d95a0806dcbab7ddd0/src/cmd/go/internal/work/build.go#L734
+	go list -f '{{if or .CgoFiles .GoFiles}} {{.Dir}} {{end}}' ./... | grep -v gostream | xargs go build
 
 GOOS ?= $(shell go env GOOS)
 GOARCH ?= $(shell go env GOARCH)
@@ -61,8 +65,13 @@ lint: lint-go lint-web
 
 lint-go: tool-install
 	go mod tidy
-	export pkgs="`go list -f '{{.Dir}}' ./... | grep -v /proto/`" && echo "$$pkgs" | xargs go vet -vettool=$(TOOL_BIN)/combined
-	GOGC=50 $(TOOL_BIN)/golangci-lint run -v --fix --config=./etc/.golangci.yaml
+	export pkgs="`go list -f '{{.Dir}}' ./... | grep -v -e /proto/ -e gostream`" && echo "$$pkgs" | xargs go vet -vettool=$(TOOL_BIN)/combined
+	export GOC=50 pkgs=`go list -f '{{.Dir}}' ./... | grep -v gostream` && echo "$$pkgs" | xargs $(TOOL_BIN)/golangci-lint run -v --fix --config=./etc/.golangci.yaml
+
+lint-gostream:
+	PATH=$(PATH_WITH_TOOLS) buf lint
+	export pkgs=`go list -f '{{.Dir}}' ./... | grep -v /proto/ | grep -v mmal` && echo "$$pkgs" | xargs go vet -vettool=$(TOOL_BIN)/combined
+	export GOC=50 pkgs=`go list -f '{{.Dir}}' ./... | grep -v mmal` && echo "$$pkgs" | xargs $(TOOL_BIN)/golangci-lint run -v --fix --config=./etc/.golangci.yaml
 
 lint-web: check-web
 	npm run lint --prefix web/frontend
@@ -90,6 +99,9 @@ test-web:
 test-pi:
 	go test -c -o $(BIN_OUTPUT_PATH)/test-pi go.viam.com/rdk/components/board/pi/impl
 	sudo $(BIN_OUTPUT_PATH)/test-pi -test.short -test.v
+
+test-gostream:
+	PATH=$(PATH_WITH_TOOLS) ./../gostream/test.sh
 
 test-e2e:
 	go build $(LDFLAGS) -o bin/test-e2e/server web/cmd/server/main.go

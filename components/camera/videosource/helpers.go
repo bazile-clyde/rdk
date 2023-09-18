@@ -10,9 +10,9 @@ import (
 
 	"github.com/edaniels/golog"
 	"github.com/pkg/errors"
-	"github.com/viamrobotics/gostream"
 	viamutils "go.viam.com/utils"
 
+	"go.viam.com/rdk/gostream"
 	"go.viam.com/rdk/rimage"
 	"go.viam.com/rdk/utils"
 )

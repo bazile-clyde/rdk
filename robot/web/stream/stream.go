@@ -10,8 +10,9 @@ import (
 	"time"
 
 	"github.com/edaniels/golog"
-	"github.com/viamrobotics/gostream"
 	"go.viam.com/utils"
+
+	"go.viam.com/rdk/gostream"
 )
 
 // StreamVideoSource starts a stream from a video source with a throttled error handler.

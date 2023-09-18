@@ -17,11 +17,11 @@ import (
 	"github.com/edaniels/golog"
 	"github.com/pion/rtp"
 	"github.com/pkg/errors"
-	"github.com/viamrobotics/gostream"
 	"go.uber.org/multierr"
 	goutils "go.viam.com/utils"
 
 	"go.viam.com/rdk/components/camera"
+	"go.viam.com/rdk/gostream"
 	"go.viam.com/rdk/resource"
 	"go.viam.com/rdk/rimage/transform"
 )

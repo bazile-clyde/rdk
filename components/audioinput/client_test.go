@@ -9,11 +9,11 @@ import (
 	"github.com/edaniels/golog"
 	"github.com/pion/mediadevices/pkg/prop"
 	"github.com/pion/mediadevices/pkg/wave"
-	"github.com/viamrobotics/gostream"
 	"go.viam.com/test"
 	"go.viam.com/utils/rpc"
 
 	"go.viam.com/rdk/components/audioinput"
+	"go.viam.com/rdk/gostream"
 	viamgrpc "go.viam.com/rdk/grpc"
 	"go.viam.com/rdk/resource"
 	"go.viam.com/rdk/testutils"

@@ -163,7 +163,7 @@ jobs:
             libvpx-dev \
             libx264-dev
       - name: Run Test Suite
-        run: make lint-gostream test-gostream
+        run: make lint-go test-gostream
   macos:
     strategy:
       matrix:

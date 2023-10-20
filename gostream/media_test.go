@@ -7,8 +7,6 @@ import (
 	"image/color"
 	"testing"
 
-	"go.viam.com/rdk/rimage"
-
 	"github.com/pion/mediadevices/pkg/prop"
 	"go.viam.com/test"
 

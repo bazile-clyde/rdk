@@ -3,13 +3,16 @@ package gostream
 import (
 	"context"
 	_ "embed"
-	"go.viam.com/rdk/rimage"
 	"image"
 	"image/color"
 	"testing"
 
+	"go.viam.com/rdk/rimage"
+
 	"github.com/pion/mediadevices/pkg/prop"
 	"go.viam.com/test"
+
+	"go.viam.com/rdk/rimage"
 )
 
 type imageSource struct {

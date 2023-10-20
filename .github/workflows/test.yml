@@ -156,7 +156,7 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update -qq \
-          && sudo apt-get install --no-install-recommends -y \
+          && sudo apt-get install --no-install-recommends -qqy \
             libopus-dev \
             libopusfile-dev \
             libva-dev \

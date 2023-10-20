@@ -65,12 +65,7 @@ lint: lint-go lint-web
 
 lint-go: tool-install
 	go mod tidy
-	export pkgs="`go list -f '{{.Dir}}' ./... | grep -v -e /proto/ -e gostream`" && echo "$$pkgs" | xargs go vet -vettool=$(TOOL_BIN)/combined
-	export GOC=50 pkgs=`go list -f '{{.Dir}}' ./... | grep -v gostream` && echo "$$pkgs" | xargs $(TOOL_BIN)/golangci-lint run -v --fix --config=./etc/.golangci.yaml
-
-lint-gostream:
-	PATH=$(PATH_WITH_TOOLS) buf lint
-	export pkgs=`go list -f '{{.Dir}}' ./... | grep -v /proto/ | grep -v mmal` && echo "$$pkgs" | xargs go vet -vettool=$(TOOL_BIN)/combined
+	export pkgs="`go list -f '{{.Dir}}' ./... | grep -v -e /proto/ -e mmal`" && echo "$$pkgs" | xargs go vet -vettool=$(TOOL_BIN)/combined
 	export GOC=50 pkgs=`go list -f '{{.Dir}}' ./... | grep -v mmal` && echo "$$pkgs" | xargs $(TOOL_BIN)/golangci-lint run -v --fix --config=./etc/.golangci.yaml
 
 lint-web: check-web

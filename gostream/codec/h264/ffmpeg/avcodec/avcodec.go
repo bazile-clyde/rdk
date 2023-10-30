@@ -1,4 +1,4 @@
-package ffmpeg
+package avcodec
 
 //#cgo CFLAGS: -I${SRCDIR}/include/libavutil
 //#cgo LDFLAGS: ${SRCDIR}/lib/libavutil.a

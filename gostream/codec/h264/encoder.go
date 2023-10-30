@@ -1,16 +1,11 @@
-//go:build cgo
-
 package h264
 
-import "C"
-import (
-	"go.viam.com/rdk/gostream/codec/h264/ffmpeg"
-)
+import "go.viam.com/rdk/gostream/codec/h264/ffmpeg/avcodec"
 
 const (
 	// pixelFormat This format is one of the output formats support by the bcm2835-codec at /dev/video11
 	// It is also known as YU12. See https://www.kernel.org/doc/html/v4.10/media/uapi/v4l/pixfmt-yuv420.html
-	pixelFormat = ffmpeg.AV_PIX_FMT_YUV420P
+	pixelFormat = avcodec.AV_PIX_FMT_YUV420P
 	h264Codec   = "h264_v4l2m2m"
 )
 

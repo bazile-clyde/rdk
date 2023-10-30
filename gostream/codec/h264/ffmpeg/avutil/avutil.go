@@ -31,7 +31,7 @@ func SetFrame(f *Frame, w int, h int, pixFmt int) error {
 	f.height = C.int(h)
 	f.format = C.int(pixFmt)
 	if ret := C.av_frame_get_buffer((*C.struct_AVFrame)(unsafe.Pointer(f)), 0 /*alignment*/); ret < 0 {
-		return errors.Errorf("error allocating avframe buffer: return val %v", ret)
+		return errors.Errorf("error allocating avframe buffer: return value %d", int(ret))
 	}
 	return nil
 }
@@ -76,7 +76,6 @@ func (f *Frame) SetFramePTS(pts int64) {
 }
 
 const (
-	ErrorEOF    = -('E' | ('O' << 8) | ('F' << 16) | (' ' << 24))
 	ErrorEAGAIN = -11
 	Success     = 0
 )

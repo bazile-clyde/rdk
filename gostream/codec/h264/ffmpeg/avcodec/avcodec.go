@@ -1,8 +1,9 @@
 package avcodec
 
-//#cgo CFLAGS: -I${SRCDIR}/include/libavutil
-//#cgo LDFLAGS: ${SRCDIR}/lib/libavutil.a
+//#cgo CFLAGS: -I${SRCDIR}/include
+//#cgo LDFLAGS: ${SRCDIR}/lib/libavcodec.a -lm
 //#include <libavutil/pixfmt.h>
+//#include <libavcodec/packet.h>
 import "C"
 import (
 	"unsafe"

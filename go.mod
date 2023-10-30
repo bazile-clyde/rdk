@@ -31,6 +31,7 @@ require (
 	github.com/fsnotify/fsnotify v1.6.0
 	github.com/fullstorydev/grpcurl v1.8.6
 	github.com/gen2brain/malgo v0.11.10
+	github.com/giorgisio/goav v0.1.0
 	github.com/go-audio/audio v1.0.0
 	github.com/go-audio/transforms v0.0.0-20180121090939-51830ccc35a5
 	github.com/go-audio/wav v1.1.0
@@ -397,3 +398,5 @@ require (
 	github.com/ziutek/mymysql v1.5.4 // indirect
 	golang.org/x/exp v0.0.0-20230321023759-10a507213a29
 )
+
+replace github.com/giorgisio/goav => /usr/local/libs/goav

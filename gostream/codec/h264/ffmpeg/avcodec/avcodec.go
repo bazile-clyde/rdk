@@ -249,3 +249,9 @@ func (p *Packet) Data() *uint8 {
 func (p *Packet) Size() int {
 	return int(p.size)
 }
+
+// RegisterAll Register all codecs, parsers and bitstream filters.
+func RegisterAll() {
+	C.av_register_all()
+	C.avcodec_register_all()
+}

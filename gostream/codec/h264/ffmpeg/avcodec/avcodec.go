@@ -1,13 +1,13 @@
 package avcodec
 
-//#cgo CFLAGS: -I${SRCDIR}/include
-//#cgo LDFLAGS: ${SRCDIR}/lib/libavcodec.a -lm
-//#include <libavutil/pixfmt.h>
-//#include <libavcodec/packet.h>
 import "C"
-import (
-	"unsafe"
-)
+import "unsafe"
+
+//#cgo pkg-config: libavformat libavcodec libavutil
+//#include <libavformat/avformat.h>
+//#include <libavcodec/avcodec.h>
+//#include <libavutil/avutil.h>
+import "C"
 
 const AvPixFmtYuv420p = C.AV_PIX_FMT_YUV420P
 

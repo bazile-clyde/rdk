@@ -1,1 +1,1 @@
-./configure --disable-programs --disable-doc --disable-everything --enable-encoder=h264_v4l2m2m --prefix=/usr/local/libs/rdk/gostream/codec/h264/ffmpeg/ffmpeg --disable-large-tests --disable-avdevice --disable-swresample --disable-swscale --disable-postproc --disable-network
+./configure --disable-programs --disable-doc --disable-everything --enable-encoder=h264_v4l2m2m --prefix=/usr/local/libs/rdk/gostream/codec/h264/ffmpeg/ffmpeg  --enable-pic

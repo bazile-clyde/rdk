@@ -1,14 +1,12 @@
 package avcodec
 
-import "C"
-import "unsafe"
-
-//#cgo LDFLAGS: -L${SRCDIR}/../ffmpeg/lib/ -lavcodec -lavformat -lavutil -lswscale -lswresample -lavdevice -lavfilter
-//#cgo pkg-config: libavformat libavcodec libavutil
+//#cgo pkg-config: libavformat libavcodec libavutil libswresample
 //#include <libavformat/avformat.h>
 //#include <libavcodec/avcodec.h>
+//#include <libavcodec/packet.h>
 //#include <libavutil/avutil.h>
 import "C"
+import "unsafe"
 
 const AvPixFmtYuv420p = C.AV_PIX_FMT_YUV420P
 
@@ -166,7 +164,7 @@ func (ctxt *Context) Close() int {
 }
 
 func (p *Packet) Free() {
-	C.av_free_packet((*C.struct_AVPacket)(p))
+	// C.av_free_packet((*C.struct_AVPacket)(p))
 }
 
 // Unref Wipe the packet.
@@ -254,6 +252,6 @@ func (p *Packet) Size() int {
 
 // RegisterAll Register all codecs, parsers and bitstream filters.
 func RegisterAll() {
-	C.av_register_all()
-	C.avcodec_register_all()
+	// C.av_register_all()
+	// C.avcodec_register_all()
 }

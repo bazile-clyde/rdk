@@ -1,5 +1,7 @@
 package avutil
 
+//#cgo CFLAGS: -Wno-deprecated-declarations -I${SRCDIR}/../ffmpeg/include
+//#cgo LDFLAGS: -L${SRCDIR}/../ffmpeg/lib -lavformat -lavcodec -lavutil -lavdevice -lavfilter -lswresample -lswscale -lm  -lvdpau -lva-drm -lva-x11 -lva
 //#include <libswresample/swresample.h>
 //#include <libavutil/error.h>
 //#include <stdlib.h>

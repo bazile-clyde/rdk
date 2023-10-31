@@ -1,0 +1,14 @@
+prefix=/usr/local/libs/rdk/gostream/codec/h264/ffmpeg/ffmpeg
+exec_prefix=${prefix}
+libdir=/usr/local/libs/rdk/gostream/codec/h264/ffmpeg/ffmpeg/lib
+includedir=/usr/local/libs/rdk/gostream/codec/h264/ffmpeg/ffmpeg/include
+
+Name: libavcodec
+Description: FFmpeg codec library
+Version: 58.134.100
+Requires: libswresample >= 3.9.100, libavutil >= 56.70.100
+Requires.private: 
+Conflicts:
+Libs: -L${libdir}  -lavcodec -pthread -lm -latomic -llzma -L/home/linuxbrew/.linuxbrew/opt/zlib/lib -lz
+Libs.private: 
+Cflags: -I${includedir}

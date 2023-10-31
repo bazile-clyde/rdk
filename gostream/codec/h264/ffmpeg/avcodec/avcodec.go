@@ -3,6 +3,7 @@ package avcodec
 import "C"
 import "unsafe"
 
+//#cgo LDFLAGS: -L${SRCDIR}/../ffmpeg/lib/ -lavcodec -lavformat -lavutil -lswscale -lswresample -lavdevice -lavfilter
 //#cgo pkg-config: libavformat libavcodec libavutil
 //#include <libavformat/avformat.h>
 //#include <libavcodec/avcodec.h>

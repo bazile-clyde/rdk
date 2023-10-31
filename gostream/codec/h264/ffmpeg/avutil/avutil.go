@@ -52,7 +52,7 @@ func FrameMakeWritable(f *Frame) int {
 	return int(C.av_frame_make_writable((*C.struct_AVFrame)(unsafe.Pointer(f))))
 }
 
-// AvFrameUnref Unreference all the buffers referenced by frame and reset the frame fields.
+// FrameUnref Unreference all the buffers referenced by frame and reset the frame fields.
 func FrameUnref(f *Frame) {
 	C.av_frame_unref((*C.struct_AVFrame)(unsafe.Pointer(f)))
 }

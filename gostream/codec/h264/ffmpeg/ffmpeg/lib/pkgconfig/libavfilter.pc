@@ -6,7 +6,7 @@ includedir=/usr/local/libs/rdk/gostream/codec/h264/ffmpeg/ffmpeg/include
 Name: libavfilter
 Description: FFmpeg audio/video filtering library
 Version: 7.110.100
-Requires: libswscale >= 5.9.100, libavformat >= 58.76.100, libavcodec >= 58.134.100, libswresample >= 3.9.100, libavutil >= 56.70.100
+Requires: libavutil >= 56.70.100
 Requires.private: 
 Conflicts:
 Libs: -L${libdir}  -lavfilter -pthread -lm -latomic

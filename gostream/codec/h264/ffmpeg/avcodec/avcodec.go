@@ -1,5 +1,6 @@
 package avcodec
 
+//#cgo CFLAGS: -Wno-deprecated-declarations
 //#cgo pkg-config: libavformat libavcodec libavutil libswresample
 //#include <libavformat/avformat.h>
 //#include <libavcodec/avcodec.h>
@@ -164,7 +165,7 @@ func (ctxt *Context) Close() int {
 }
 
 func (p *Packet) Free() {
-	// C.av_free_packet((*C.struct_AVPacket)(p))
+	C.av_free_packet((*C.struct_AVPacket)(p))
 }
 
 // Unref Wipe the packet.
@@ -252,6 +253,6 @@ func (p *Packet) Size() int {
 
 // RegisterAll Register all codecs, parsers and bitstream filters.
 func RegisterAll() {
-	// C.av_register_all()
-	// C.avcodec_register_all()
+	C.av_register_all()
+	C.avcodec_register_all()
 }

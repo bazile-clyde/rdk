@@ -1,7 +1,7 @@
 package avcodec
 
 //#cgo CFLAGS: -Wno-deprecated-declarations
-//#cgo pkg-config: libavformat libavcodec libavutil libswresample
+//#cgo pkg-config: libavformat libavcodec libavutil
 //#include <libavformat/avformat.h>
 //#include <libavcodec/avcodec.h>
 //#include <libavcodec/packet.h>

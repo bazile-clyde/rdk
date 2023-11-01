@@ -5,10 +5,10 @@ includedir=/usr/local/libs/rdk/gostream/codec/h264/ffmpeg/ffmpeg/include
 
 Name: libavutil
 Description: FFmpeg utility library
-Version: 56.70.100
+Version: 58.31.100
 Requires: 
 Requires.private: 
 Conflicts:
-Libs: -L${libdir}  -lavutil -pthread -lvdpau -lX11 -lm -latomic
+Libs: -L${libdir}  -lavutil -pthread -lm -latomic
 Libs.private: 
 Cflags: -I${includedir}

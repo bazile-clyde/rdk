@@ -3,7 +3,7 @@
 package avcodec
 
 //#cgo CFLAGS: -Wno-deprecated-declarations -I${SRCDIR}/../ffmpeg/include
-//#cgo LDFLAGS: -L${SRCDIR}/../ffmpeg/lib -lavformat -lavcodec -lavutil -lavdevice -lavfilter -lswresample -lswscale -lm -lX11 -lvdpau -lva-drm -lva-x11 -lva
+//#cgo LDFLAGS: -L${SRCDIR}/../ffmpeg/lib -lavformat -lavcodec -lavutil -lavdevice -lavfilter -lswresample -lswscale -lm -lX11
 //#include <libavformat/avformat.h>
 //#include <libavcodec/avcodec.h>
 //#include <libavcodec/packet.h>

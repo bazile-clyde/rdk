@@ -1,66 +1,16 @@
 package jetsoncamera
 
-// #include <sys/utsname.h>
-// #include <string.h>
-import "C"
-
 import (
-	"bytes"
 	"fmt"
+	"go.uber.org/multierr"
+	"go.viam.com/rdk/utils"
 	"os"
 	"path/filepath"
-	"runtime"
-	"unsafe"
-
-	"go.uber.org/multierr"
 )
-
-// DetectOSInformation pulls relevant OS attributes as an OSInformation struct
-// Kernel and Device will be "unknown" if unable to retrieve info from the filesystem
-// returns an error if kernel version or device name is unavailable
-func DetectOSInformation() (OSInformation, error) {
-	kernelVersion, err := getKernelVersion()
-	if err != nil {
-		return OSInformation{}, fmt.Errorf("failed to get kernel version: %w", err)
-	}
-	deviceName, err := getDeviceName()
-	if err != nil {
-		return OSInformation{}, fmt.Errorf("failed to get device name: %w", err)
-	}
-	osInfo := OSInformation{
-		Name:   runtime.GOOS,
-		Arch:   runtime.GOARCH,
-		Kernel: kernelVersion,
-		Device: deviceName,
-	}
-	return osInfo, nil
-}
-
-// getKernelVersion returns the Linux kernel version
-// $ uname -r
-func getKernelVersion() (string, error) {
-	var utsName C.struct_utsname
-	if C.uname(&utsName) == -1 {
-		return Unknown, fmt.Errorf("uname information unavailable (%v)", utsName)
-	}
-	release := C.GoString((*C.char)(unsafe.Pointer(&utsName.release[0])))
-	return release, nil
-}
-
-// getDeviceName returns the model name of the device
-// $ cat /sys/firmware/devicetree/base/model
-func getDeviceName() (string, error) {
-	const devicePath = "/sys/firmware/devicetree/base/model"
-	device, err := os.ReadFile(devicePath)
-	if err != nil {
-		return Unknown, err
-	}
-	return string(bytes.TrimRight(device, "\x00")), nil
-}
 
 // ValidateSetup wraps an error from NewWebcamSource with a more helpful message
 func ValidateSetup(deviceName, daughterboardName, driverName string, err error) error {
-	osInfo, osErr := DetectOSInformation()
+	osInfo, osErr := utils.DetectOSInformation()
 	if osErr != nil {
 		return err
 	}
@@ -76,7 +26,7 @@ func ValidateSetup(deviceName, daughterboardName, driverName string, err error) 
 
 // DetectError checks daughterboard and camera setup to determine
 // our best guess of what is wrong with an unsuccessful camera open
-func DetectError(osInfo OSInformation, daughterboardName, driverName string) error {
+func DetectError(osInfo utils.OSInformation, daughterboardName, driverName string) error {
 	board, ok := cameraInfoMappings[osInfo.Device]
 	if !ok {
 		return fmt.Errorf("the %s device is not supported on this platform", osInfo.Device)
